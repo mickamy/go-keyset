@@ -30,7 +30,8 @@ This library provides:
 go-keyset/
   keyset/        # Core logic (Page, Order, cursor encoding)
   kgorm/         # GORM adapter with composable scopes
-  examples/      # Practical PostgreSQL example
+  ksql/          # Pure-SQL helper for database/sql, sqlx, pgx
+  examples/      # Practical PostgreSQL examples (kgorm, ksql)
 ```
 
 ---
@@ -42,6 +43,7 @@ go-keyset/
 ```bash
 go get github.com/mickamy/go-keyset
 go get github.com/mickamy/go-keyset/kgorm # for GORM integration
+go get github.com/mickamy/go-keyset/ksql  # for sql.DB integration
 ```
 
 ---
