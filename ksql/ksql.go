@@ -1,3 +1,31 @@
+// Package ksql provides lightweight helpers for building keyset pagination
+// queries using database/sql or other low-level SQL interfaces.
+//
+// It is ORM-agnostic, focusing purely on SQL string composition and cursor logic.
+// This allows consistent keyset pagination across different data access layers,
+// such as pgx, sqlx, or plain database/sql.
+//
+// Example:
+//
+//	base := `SELECT id, title, created_at FROM posts`
+//	page := keyset.Page{Limit: 10, Dir: keyset.DirNext, Cursor: ""}
+//
+//	query, args := ksql.QueryByTimeAndID(
+//		base, page, keyset.Descending,
+//		"created_at", "id", ksql.PlaceholderDollar,
+//	)
+//
+//	rows, err := db.QueryContext(ctx, query, args...)
+//	if err != nil { ... }
+//
+//	for rows.Next() {
+//		// scan rows...
+//	}
+//
+//	// Compute next cursor for HTTP API responses
+//	next := keyset.EncodeNextCursor(last.CreatedAt, last.ID)
+//
+// See also the `examples/ksql` package for a working PostgreSQL example.
 package ksql
 
 import (
