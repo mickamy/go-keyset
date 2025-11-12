@@ -63,6 +63,10 @@ jobs:
   examples-postgres:
     name: Examples (PostgreSQL)
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        module_dir: [ 'examples/kgorm', 'examples/ksql' ]
     needs: test
     services:
       postgres:
@@ -98,6 +102,6 @@ jobs:
         run: PGPASSWORD=password psql -h localhost -p 5432 -U postgres -d postgres -f ./docker/postgres/init.sql
 
       - name: Run example
-        working-directory: ./examples/kgorm
+        working-directory: ${{ matrix.module_dir }}
         run: |
           go run . || (echo "Example failed" >&2; exit 1)
