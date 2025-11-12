@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        module_dir: ['.', 'kgorm']
+        module_dir: ['.', 'kgorm', 'ksql']
     steps:
       - uses: actions/checkout@v5
 
@@ -37,7 +37,7 @@ jobs:
       fail-fast: false
       matrix:
         go: ['1.24.x', '1.25.x']
-        module_dir: ['.', 'kgorm']
+        module_dir: ['.', 'kgorm', 'ksql']
     steps:
       - uses: actions/checkout@v5
 
