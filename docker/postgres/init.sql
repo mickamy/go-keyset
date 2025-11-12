@@ -1,1 +1,1 @@
-CREATE DATABASE scopes;
+CREATE DATABASE keyset;
