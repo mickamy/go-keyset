@@ -82,3 +82,9 @@ func DecodeTimeAndInt64Cursor(s string) (time.Time, int64, error) {
 	idu := binary.BigEndian.Uint64(b[8:16])
 	return time.Unix(0, int64(tu)).UTC(), int64(idu), nil
 }
+
+// EncodeNextCursor returns the next-page cursor derived from
+// the last visible record (display boundary).
+func EncodeNextCursor(t time.Time, id int64) string {
+	return EncodeTimeAndInt64Cursor(t, id)
+}
